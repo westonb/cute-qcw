@@ -1,0 +1,19 @@
+#ignore kicad backup files
+*.bak
+*.kicad_pcb-bak
+pcb/Inverter/*.v4
+#ignore ltspice log files
+*.log
+*.plt
+*.raw
+#matlab backup files
+*.m~
+#osx files
+*.DS_Store
+#for firmware
+*.tmp
+Firmware/Inverter/inverter/build 
+mx.scratch
+#simulation
+simulation/inverter/*.net
+
