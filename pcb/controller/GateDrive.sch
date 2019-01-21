@@ -213,7 +213,7 @@ Wire Wire Line
 	2200 4700 2200 4800
 Wire Wire Line
 	2300 5000 2200 5000
-Text GLabel 4400 6300 0    50   Input ~ 0
+Text GLabel 4400 6200 0    50   Input ~ 0
 GATE_2
 Wire Wire Line
 	2200 5300 2200 5500
@@ -415,7 +415,7 @@ Wire Wire Line
 	7450 2200 7450 2300
 Wire Wire Line
 	7550 2500 7450 2500
-Text GLabel 4400 6500 0    50   Input ~ 0
+Text GLabel 4400 6300 0    50   Input ~ 0
 GATE_3
 Wire Wire Line
 	7450 2800 7450 3000
@@ -558,7 +558,7 @@ Wire Wire Line
 	7450 4700 7450 4800
 Wire Wire Line
 	7550 5000 7450 5000
-Text GLabel 4400 6700 0    50   Input ~ 0
+Text GLabel 4400 6400 0    50   Input ~ 0
 GATE_4
 Wire Wire Line
 	7450 5300 7450 5500
@@ -856,14 +856,6 @@ Wire Wire Line
 Wire Wire Line
 	5500 6400 5600 6400
 Wire Wire Line
-	5500 6500 5600 6500
-Wire Wire Line
-	5500 6600 5600 6600
-Wire Wire Line
-	5500 6700 5600 6700
-Wire Wire Line
-	5500 6800 5600 6800
-Wire Wire Line
 	4500 6100 4400 6100
 Wire Wire Line
 	4500 6200 4400 6200
@@ -881,11 +873,11 @@ Wire Wire Line
 	4500 6800 4400 6800
 Text Label 5600 6100 0    50   ~ 0
 GATE1_5
-Text Label 5600 6300 0    50   ~ 0
+Text Label 5600 6200 0    50   ~ 0
 GATE2_5
-Text Label 5600 6500 0    50   ~ 0
+Text Label 5600 6300 0    50   ~ 0
 GATE3_5
-Text Label 5600 6700 0    50   ~ 0
+Text Label 5600 6400 0    50   ~ 0
 GATE4_5
 Text Label 2200 2500 2    50   ~ 0
 GATE1_5
@@ -1036,4 +1028,16 @@ Text GLabel 2000 6800 1    50   Input ~ 0
 GATE_3
 Text GLabel 2450 6800 1    50   Input ~ 0
 GATE_4
+Wire Wire Line
+	4400 6500 4400 6600
+Connection ~ 4400 6900
+Connection ~ 4400 6600
+Wire Wire Line
+	4400 6600 4400 6700
+Connection ~ 4400 6700
+Wire Wire Line
+	4400 6700 4400 6800
+Connection ~ 4400 6800
+Wire Wire Line
+	4400 6800 4400 6900
 $EndSCHEMATC

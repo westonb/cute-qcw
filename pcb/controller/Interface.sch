@@ -798,4 +798,30 @@ F 3 "~" H 8850 4850 50  0001 C CNN
 	1    8850 4850
 	1    0    0    1   
 $EndComp
+Text Notes 5300 1150 0    50   ~ 0
+Connect with RJ45 Crossover Cable\n(1 Swapped with 3, 2 Swapped with 6)
+Wire Wire Line
+	5400 2600 5300 2600
+Wire Wire Line
+	5400 2500 5300 2500
+Wire Wire Line
+	5400 2400 5300 2400
+Wire Wire Line
+	5400 2100 5300 2100
+Text Label 5300 2600 2    50   ~ 0
+TX_P
+Text Label 5300 2500 2    50   ~ 0
+TX_N
+Text Label 5300 2400 2    50   ~ 0
+RX_P
+Text Label 5300 2100 2    50   ~ 0
+RX_N
+Wire Wire Line
+	5400 2000 5300 2000
+Wire Wire Line
+	5400 1900 5300 1900
+Text Label 5300 1900 2    50   ~ 0
+GND_ISO
+Text Label 5300 2000 2    50   ~ 0
+5_ISO
 $EndSCHEMATC

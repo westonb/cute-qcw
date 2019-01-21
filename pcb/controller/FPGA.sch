@@ -804,16 +804,107 @@ LED1
 $Comp
 L Connector:Conn_01x04_Male J3002
 U 1 1 5C4F5670
-P 9100 1900
-F 0 "J3002" H 9206 2178 50  0000 C CNN
-F 1 "Conn_01x04_Male" H 9206 2087 50  0000 C CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical" H 9100 1900 50  0001 C CNN
-F 3 "~" H 9100 1900 50  0001 C CNN
-	1    9100 1900
-	1    0    0    -1  
+P 9400 1900
+F 0 "J3002" H 9506 2178 50  0000 C CNN
+F 1 "Conn_01x04_Male" H 9506 2087 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical" H 9400 1900 50  0001 C CNN
+F 3 "~" H 9400 1900 50  0001 C CNN
+	1    9400 1900
+	-1   0    0    -1  
 $EndComp
-Wire Wire Line
-	5300 2550 5400 2550
 Text GLabel 10300 4500 2    50   Input ~ 0
 +3V3D
+Wire Wire Line
+	5300 1850 5400 1850
+Text GLabel 5400 1850 2    50   Input ~ 0
+GATE_1
+Wire Wire Line
+	5300 2950 5400 2950
+Text GLabel 5400 2950 2    50   Input ~ 0
+GATE_2
+Wire Wire Line
+	5300 2650 5400 2650
+Text GLabel 5400 2650 2    50   Input ~ 0
+GATE_3
+Wire Wire Line
+	5300 3650 5400 3650
+Text GLabel 5400 3650 2    50   Input ~ 0
+GATE_4
+Wire Wire Line
+	8000 4850 8100 4850
+Wire Wire Line
+	8000 3050 8100 3050
+Wire Wire Line
+	8000 1850 8100 1850
+Text GLabel 8100 1850 2    50   Input ~ 0
+FIBER_TX
+Text GLabel 8100 3050 2    50   Input ~ 0
+FIBER_RX
+Wire Wire Line
+	8000 4350 8100 4350
+Wire Wire Line
+	9200 1800 9100 1800
+Wire Wire Line
+	9200 2100 9100 2100
+Wire Wire Line
+	9200 2000 9100 2000
+Wire Wire Line
+	9200 1900 9100 1900
+Text GLabel 9100 1700 0    50   Input ~ 0
++3V3D
+Wire Wire Line
+	9100 1700 9100 1800
+Wire Wire Line
+	9100 2100 9100 2200
+$Comp
+L power:GND #PWR?
+U 1 1 5C4ECF97
+P 9100 2200
+F 0 "#PWR?" H 9100 1950 50  0001 C CNN
+F 1 "GND" H 9105 2027 50  0000 C CNN
+F 2 "" H 9100 2200 50  0001 C CNN
+F 3 "" H 9100 2200 50  0001 C CNN
+	1    9100 2200
+	1    0    0    -1  
+$EndComp
+Text Label 9100 1900 2    50   ~ 0
+DEBUG_TX
+Text Label 9100 2000 2    50   ~ 0
+DEBUG_RX
+Wire Wire Line
+	5300 3550 5400 3550
+Text GLabel 5400 4650 2    50   Input ~ 0
+ZCS_DETECT
+Wire Wire Line
+	8000 5050 8100 5050
+Text GLabel 8100 5050 2    50   Input ~ 0
+ADC_CSB
+Wire Wire Line
+	8000 4750 8100 4750
+Text GLabel 8100 4750 2    50   Input ~ 0
+ADC_SCLK
+Text GLabel 8100 4850 2    50   Input ~ 0
+ADC_SDIO
+Text GLabel 8100 4350 2    50   Input ~ 0
+ADC_MODE
+Wire Wire Line
+	5300 4650 5400 4650
+Text GLabel 5400 3550 2    50   Input ~ 0
+UVLO
+Wire Wire Line
+	5300 3450 5400 3450
+Text Label 5400 3450 0    50   ~ 0
+DEBUG_RX
+Wire Wire Line
+	5300 2550 5400 2550
+Text Label 5400 2550 0    50   ~ 0
+DEBUG_TX
+Wire Wire Line
+	5300 4350 5400 4350
+Text Label 5400 4350 0    50   ~ 0
+LED1
+Wire Wire Line
+	5300 4250 5400 4250
+Text Label 5400 4250 0    50   ~ 0
+LED2
 $EndSCHEMATC
