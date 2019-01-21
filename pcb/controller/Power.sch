@@ -28,13 +28,13 @@ $EndComp
 $Comp
 L Connector:Conn_01x02_Female J2001
 U 1 1 5C45A3A4
-P 1450 2100
-F 0 "J2001" H 1344 2285 50  0000 C CNN
-F 1 "Conn_01x02_Female" H 1344 2194 50  0000 C CNN
-F 2 "wbraun_smd:TerminalBlock-5.0mm-2" H 1450 2100 50  0001 C CNN
-F 3 "~" H 1450 2100 50  0001 C CNN
-	1    1450 2100
-	-1   0    0    -1  
+P 1450 2200
+F 0 "J2001" H 1344 2385 50  0000 C CNN
+F 1 "Conn_01x02_Female" H 1344 2294 50  0000 C CNN
+F 2 "wbraun_smd:Terminal-block-plug_2x1_3.5mm-pitch" H 1450 2200 50  0001 C CNN
+F 3 "~" H 1450 2200 50  0001 C CNN
+	1    1450 2200
+	-1   0    0    1   
 $EndComp
 $Comp
 L Device:C C2003
@@ -874,7 +874,7 @@ $EndComp
 Wire Wire Line
 	3550 3900 3850 3900
 Wire Wire Line
-	4150 3900 4350 3900
+	4150 3900 4250 3900
 Wire Wire Line
 	3100 3800 3100 3900
 Connection ~ 3100 3900
@@ -1016,4 +1016,33 @@ F 3 "" H 4800 5300 50  0001 C CNN
 	1    4800 5300
 	1    0    0    -1  
 $EndComp
+$Comp
+L Device:C C2016
+U 1 1 5C45724D
+P 4250 4150
+F 0 "C2016" H 4365 4196 50  0000 L CNN
+F 1 "47u" H 4365 4105 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric" H 4288 4000 50  0001 C CNN
+F 3 "~" H 4250 4150 50  0001 C CNN
+	1    4250 4150
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4250 3900 4250 4000
+$Comp
+L power:GND #PWR0195
+U 1 1 5C457255
+P 4250 4400
+F 0 "#PWR0195" H 4250 4150 50  0001 C CNN
+F 1 "GND" H 4255 4227 50  0000 C CNN
+F 2 "" H 4250 4400 50  0001 C CNN
+F 3 "" H 4250 4400 50  0001 C CNN
+	1    4250 4400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4250 4300 4250 4400
+Connection ~ 4250 3900
+Wire Wire Line
+	4250 3900 4350 3900
 $EndSCHEMATC

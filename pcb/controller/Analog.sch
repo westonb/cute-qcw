@@ -1557,9 +1557,9 @@ Wire Wire Line
 	7100 4000 6950 4000
 Connection ~ 7100 3600
 Connection ~ 7100 4000
-Text Label 6950 3600 2    50   ~ 0
-CLK_P
 Text Label 6950 4000 2    50   ~ 0
+CLK_P
+Text Label 6950 3600 2    50   ~ 0
 CLK_N
 Text GLabel 4350 2150 2    50   Input ~ 0
 ZCS_DETECT

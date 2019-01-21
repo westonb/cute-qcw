@@ -48,17 +48,6 @@ F 3 "" H 2700 4650 60  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Connector:Conn_01x02_Female J6002
-U 1 1 5C429B27
-P 9700 3700
-F 0 "J6002" H 9727 3676 50  0000 L CNN
-F 1 "Conn_01x02_Female" H 9727 3585 50  0000 L CNN
-F 2 "wbraun_smd:terminalBlock-3.5mm-2" H 9700 3700 50  0001 C CNN
-F 3 "~" H 9700 3700 50  0001 C CNN
-	1    9700 3700
-	1    0    0    -1  
-$EndComp
-$Comp
 L Device:C C6002
 U 1 1 5C42A6ED
 P 1650 2950
@@ -104,19 +93,8 @@ F 3 "~" H 3800 1250 50  0001 C CNN
 $EndComp
 Text Label 6700 3800 2    50   ~ 0
 GND_ISO
-Text Label 9400 3150 2    50   ~ 0
+Text Label 8550 4650 2    50   ~ 0
 5_ISO
-$Comp
-L Connector:Conn_01x02_Female J6003
-U 1 1 5C42EA70
-P 9700 3150
-F 0 "J6003" H 9727 3126 50  0000 L CNN
-F 1 "Conn_01x02_Female" H 9727 3035 50  0000 L CNN
-F 2 "wbraun_smd:terminalBlock-3.5mm-2" H 9700 3150 50  0001 C CNN
-F 3 "~" H 9700 3150 50  0001 C CNN
-	1    9700 3150
-	1    0    0    -1  
-$EndComp
 Text Label 8050 3900 0    50   ~ 0
 5_ISO
 $Comp
@@ -719,20 +697,20 @@ Text Label 8100 3400 0    50   ~ 0
 RELAY_A_DRV
 Text Label 8100 3500 0    50   ~ 0
 RELAY_B_DRV
-Text Label 9400 3700 2    50   ~ 0
+Text Label 8550 4850 2    50   ~ 0
 5_ISO
-Text Label 9400 3250 2    50   ~ 0
+Text Label 8550 4750 2    50   ~ 0
 RELAY_A_DRV
-Text Label 9400 3800 2    50   ~ 0
+Text Label 8550 4950 2    50   ~ 0
 RELAY_B_DRV
 Wire Wire Line
-	9400 3150 9500 3150
+	8550 4650 8650 4650
 Wire Wire Line
-	9400 3250 9500 3250
+	8550 4750 8650 4750
 Wire Wire Line
-	9400 3700 9500 3700
+	8550 4850 8650 4850
 Wire Wire Line
-	9400 3800 9500 3800
+	8550 4950 8650 4950
 Wire Wire Line
 	6900 3900 6800 3900
 Wire Wire Line
@@ -809,4 +787,15 @@ Text GLabel 5750 5400 1    50   Input ~ 0
 RELAY_A
 Text GLabel 6200 5400 1    50   Input ~ 0
 RELAY_B
+$Comp
+L Connector:Conn_01x04_Female J6002
+U 1 1 5C461B4F
+P 8850 4850
+F 0 "J6002" H 8743 4425 50  0000 C CNN
+F 1 "Conn_01x04_Female" H 8743 4516 50  0000 C CNN
+F 2 "wbraun_smd:Terminal-block-plug_4x1_3.5mm-pitch" H 8850 4850 50  0001 C CNN
+F 3 "~" H 8850 4850 50  0001 C CNN
+	1    8850 4850
+	1    0    0    1   
+$EndComp
 $EndSCHEMATC

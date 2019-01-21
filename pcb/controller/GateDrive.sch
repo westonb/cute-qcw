@@ -343,7 +343,7 @@ U 1 1 5C6F923D
 P 4500 3900
 F 0 "J5001" H 4527 3876 50  0000 L CNN
 F 1 "Conn_01x02_Female" H 4527 3785 50  0000 L CNN
-F 2 "wbraun_smd:TerminalBlock-5.0mm-2" H 4500 3900 50  0001 C CNN
+F 2 "wbraun_smd:Terminal-block-plug_2x1_3.5mm-pitch" H 4500 3900 50  0001 C CNN
 F 3 "~" H 4500 3900 50  0001 C CNN
 	1    4500 3900
 	1    0    0    -1  
@@ -688,7 +688,7 @@ U 1 1 5C6FD316
 P 9750 3900
 F 0 "J5002" H 9777 3876 50  0000 L CNN
 F 1 "Conn_01x02_Female" H 9777 3785 50  0000 L CNN
-F 2 "wbraun_smd:TerminalBlock-5.0mm-2" H 9750 3900 50  0001 C CNN
+F 2 "wbraun_smd:Terminal-block-plug_2x1_3.5mm-pitch" H 9750 3900 50  0001 C CNN
 F 3 "~" H 9750 3900 50  0001 C CNN
 	1    9750 3900
 	1    0    0    -1  
