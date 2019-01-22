@@ -498,11 +498,11 @@ F 3 "" H 10650 4550 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	10050 4050 10750 4050
+	10050 4050 10100 4050
 Wire Wire Line
 	10050 4150 10750 4150
 Wire Wire Line
-	10050 4250 10750 4250
+	10050 4250 10400 4250
 Wire Wire Line
 	10050 4350 10750 4350
 Wire Wire Line
@@ -645,7 +645,7 @@ Text GLabel 4700 6550 1    50   Input ~ 0
 +3V3D
 Text GLabel 9100 4950 0    50   Input ~ 0
 +3V3D
-Text GLabel 10650 3800 0    50   Input ~ 0
+Text GLabel 10650 3800 2    50   Input ~ 0
 +3V3D
 Text GLabel 9800 2750 0    50   Input ~ 0
 +3V3D
@@ -841,7 +841,7 @@ FIBER_TX
 Text GLabel 8100 3050 2    50   Input ~ 0
 FIBER_RX
 Wire Wire Line
-	8000 4350 8100 4350
+	8000 4650 8100 4650
 Wire Wire Line
 	9200 1800 9100 1800
 Wire Wire Line
@@ -857,10 +857,10 @@ Wire Wire Line
 Wire Wire Line
 	9100 2100 9100 2200
 $Comp
-L power:GND #PWR?
+L power:GND #PWR0136
 U 1 1 5C4ECF97
 P 9100 2200
-F 0 "#PWR?" H 9100 1950 50  0001 C CNN
+F 0 "#PWR0136" H 9100 1950 50  0001 C CNN
 F 1 "GND" H 9105 2027 50  0000 C CNN
 F 2 "" H 9100 2200 50  0001 C CNN
 F 3 "" H 9100 2200 50  0001 C CNN
@@ -885,7 +885,7 @@ Text GLabel 8100 4750 2    50   Input ~ 0
 ADC_SCLK
 Text GLabel 8100 4850 2    50   Input ~ 0
 ADC_SDIO
-Text GLabel 8100 4350 2    50   Input ~ 0
+Text GLabel 8100 4650 2    50   Input ~ 0
 ADC_MODE
 Wire Wire Line
 	5300 4650 5400 4650
@@ -907,4 +907,68 @@ Wire Wire Line
 	5300 4250 5400 4250
 Text Label 5400 4250 0    50   ~ 0
 LED2
+Wire Wire Line
+	8000 4350 8100 4350
+Text GLabel 8100 4350 2    50   Input ~ 0
+RS485-R
+Wire Wire Line
+	8000 5250 8100 5250
+Text GLabel 8100 5250 2    50   Input ~ 0
+RS485-RE
+Wire Wire Line
+	8000 4450 8100 4450
+Text GLabel 8100 4450 2    50   Input ~ 0
+RS485-DE
+Wire Wire Line
+	8000 3750 8100 3750
+Text GLabel 8100 3750 2    50   Input ~ 0
+RS485-D
+Wire Wire Line
+	8000 3850 8100 3850
+Text GLabel 8100 3850 2    50   Input ~ 0
+RELAY_A
+Wire Wire Line
+	8000 3550 8100 3550
+Text GLabel 8100 3550 2    50   Input ~ 0
+RELAY_B
+$Comp
+L Device:R R3014
+U 1 1 5C4BCB93
+P 10100 3750
+F 0 "R3014" H 10170 3796 50  0000 L CNN
+F 1 "4.7K" H 10170 3705 50  0000 L CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" V 10030 3750 50  0001 C CNN
+F 3 "~" H 10100 3750 50  0001 C CNN
+	1    10100 3750
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	10100 3900 10100 4050
+Connection ~ 10100 4050
+Wire Wire Line
+	10100 4050 10750 4050
+Text GLabel 10400 3550 2    50   Input ~ 0
++3V3D
+Wire Wire Line
+	10100 3600 10100 3550
+$Comp
+L Device:R R3015
+U 1 1 5C4CAE4D
+P 10400 3800
+F 0 "R3015" H 10470 3846 50  0000 L CNN
+F 1 "4.7K" H 10470 3755 50  0000 L CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" V 10330 3800 50  0001 C CNN
+F 3 "~" H 10400 3800 50  0001 C CNN
+	1    10400 3800
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	10400 3950 10400 4250
+Connection ~ 10400 4250
+Wire Wire Line
+	10400 4250 10750 4250
+Wire Wire Line
+	10400 3650 10400 3550
+Wire Wire Line
+	10100 3550 10400 3550
 $EndSCHEMATC

@@ -277,9 +277,9 @@ Wire Wire Line
 	3500 2400 3600 2400
 Wire Wire Line
 	3500 2500 3600 2500
-Text Label 3600 2100 0    50   ~ 0
-TX_P
 Text Label 3600 2200 0    50   ~ 0
+TX_P
+Text Label 3600 2100 0    50   ~ 0
 TX_N
 Text Label 3600 2400 0    50   ~ 0
 RX_P
@@ -824,4 +824,23 @@ Text Label 5300 1900 2    50   ~ 0
 GND_ISO
 Text Label 5300 2000 2    50   ~ 0
 5_ISO
+$Comp
+L Device:R R6003
+U 1 1 5C498237
+P 6800 2250
+F 0 "R6003" H 6870 2296 50  0000 L CNN
+F 1 "120" H 6870 2205 50  0000 L CNN
+F 2 "Resistor_SMD:R_1206_3216Metric" V 6730 2250 50  0001 C CNN
+F 3 "~" H 6800 2250 50  0001 C CNN
+	1    6800 2250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6800 2100 6800 2000
+Wire Wire Line
+	6800 2400 6800 2500
+Text Label 6800 2000 2    50   ~ 0
+RX_P
+Text Label 6800 2500 2    50   ~ 0
+RX_N
 $EndSCHEMATC
