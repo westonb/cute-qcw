@@ -53,7 +53,7 @@ U 1 1 5BCABA6A
 P 2800 3500
 F 0 "R3" V 2900 3700 50  0000 C CNN
 F 1 "R" V 2700 3700 50  0000 C CNN
-F 2 "Resistor_SMD:R_0805_2012Metric" V 2730 3500 50  0001 C CNN
+F 2 "Resistor_SMD:R_1206_3216Metric" V 2730 3500 50  0001 C CNN
 F 3 "~" H 2800 3500 50  0001 C CNN
 	1    2800 3500
 	0    1    1    0   
@@ -64,7 +64,7 @@ U 1 1 5BCABB3F
 P 2800 2650
 F 0 "R1" V 2850 2850 50  0000 C CNN
 F 1 "R" V 2700 2900 50  0000 C CNN
-F 2 "Resistor_SMD:R_0805_2012Metric" V 2730 2650 50  0001 C CNN
+F 2 "Resistor_SMD:R_1206_3216Metric" V 2730 2650 50  0001 C CNN
 F 3 "~" H 2800 2650 50  0001 C CNN
 	1    2800 2650
 	0    1    1    0   
@@ -75,7 +75,7 @@ U 1 1 5BCABBE4
 P 2800 3000
 F 0 "R2" V 2593 3000 50  0000 C CNN
 F 1 "R" V 2684 3000 50  0000 C CNN
-F 2 "Resistor_SMD:R_0805_2012Metric" V 2730 3000 50  0001 C CNN
+F 2 "Resistor_SMD:R_1206_3216Metric" V 2730 3000 50  0001 C CNN
 F 3 "~" H 2800 3000 50  0001 C CNN
 	1    2800 3000
 	0    1    1    0   
@@ -86,7 +86,7 @@ U 1 1 5BCABC3D
 P 2800 3850
 F 0 "R4" V 2593 3850 50  0000 C CNN
 F 1 "R" V 2684 3850 50  0000 C CNN
-F 2 "Resistor_SMD:R_0805_2012Metric" V 2730 3850 50  0001 C CNN
+F 2 "Resistor_SMD:R_1206_3216Metric" V 2730 3850 50  0001 C CNN
 F 3 "~" H 2800 3850 50  0001 C CNN
 	1    2800 3850
 	0    1    1    0   
@@ -97,7 +97,7 @@ U 1 1 5BCABD54
 P 4350 2650
 F 0 "R5" V 4250 2900 50  0000 C CNN
 F 1 "R" V 4400 2800 50  0000 C CNN
-F 2 "Resistor_SMD:R_0805_2012Metric" V 4280 2650 50  0001 C CNN
+F 2 "Resistor_SMD:R_1206_3216Metric" V 4280 2650 50  0001 C CNN
 F 3 "~" H 4350 2650 50  0001 C CNN
 	1    4350 2650
 	0    1    1    0   
@@ -108,7 +108,7 @@ U 1 1 5BCABE1F
 P 4350 3500
 F 0 "R7" V 4150 3750 50  0000 C CNN
 F 1 "R" V 4250 3700 50  0000 C CNN
-F 2 "Resistor_SMD:R_0805_2012Metric" V 4280 3500 50  0001 C CNN
+F 2 "Resistor_SMD:R_1206_3216Metric" V 4280 3500 50  0001 C CNN
 F 3 "~" H 4350 3500 50  0001 C CNN
 	1    4350 3500
 	0    1    1    0   
@@ -119,7 +119,7 @@ U 1 1 5BCABE84
 P 4350 3850
 F 0 "R8" V 4143 3850 50  0000 C CNN
 F 1 "R" V 4234 3850 50  0000 C CNN
-F 2 "Resistor_SMD:R_0805_2012Metric" V 4280 3850 50  0001 C CNN
+F 2 "Resistor_SMD:R_1206_3216Metric" V 4280 3850 50  0001 C CNN
 F 3 "~" H 4350 3850 50  0001 C CNN
 	1    4350 3850
 	0    1    1    0   
@@ -130,7 +130,7 @@ U 1 1 5BCABEF1
 P 4350 3000
 F 0 "R6" V 4143 3000 50  0000 C CNN
 F 1 "R" V 4234 3000 50  0000 C CNN
-F 2 "Resistor_SMD:R_0805_2012Metric" V 4280 3000 50  0001 C CNN
+F 2 "Resistor_SMD:R_1206_3216Metric" V 4280 3000 50  0001 C CNN
 F 3 "~" H 4350 3000 50  0001 C CNN
 	1    4350 3000
 	0    1    1    0   
@@ -353,7 +353,7 @@ U 1 1 5BD1653A
 P 6850 3550
 F 0 "R11" V 6700 3850 50  0000 C CNN
 F 1 "R" V 6900 3750 50  0000 C CNN
-F 2 "Resistor_SMD:R_0805_2012Metric" V 6780 3550 50  0001 C CNN
+F 2 "Resistor_SMD:R_1206_3216Metric" V 6780 3550 50  0001 C CNN
 F 3 "~" H 6850 3550 50  0001 C CNN
 	1    6850 3550
 	0    1    1    0   
@@ -364,7 +364,7 @@ U 1 1 5BD16540
 P 6850 2700
 F 0 "R9" V 7000 2900 50  0000 C CNN
 F 1 "R" V 6900 2900 50  0000 C CNN
-F 2 "Resistor_SMD:R_0805_2012Metric" V 6780 2700 50  0001 C CNN
+F 2 "Resistor_SMD:R_1206_3216Metric" V 6780 2700 50  0001 C CNN
 F 3 "~" H 6850 2700 50  0001 C CNN
 	1    6850 2700
 	0    1    1    0   
@@ -375,7 +375,7 @@ U 1 1 5BD16546
 P 6850 3050
 F 0 "R10" V 6643 3050 50  0000 C CNN
 F 1 "R" V 6734 3050 50  0000 C CNN
-F 2 "Resistor_SMD:R_0805_2012Metric" V 6780 3050 50  0001 C CNN
+F 2 "Resistor_SMD:R_1206_3216Metric" V 6780 3050 50  0001 C CNN
 F 3 "~" H 6850 3050 50  0001 C CNN
 	1    6850 3050
 	0    1    1    0   
@@ -386,7 +386,7 @@ U 1 1 5BD1654C
 P 6850 3900
 F 0 "R12" V 6643 3900 50  0000 C CNN
 F 1 "R" V 6734 3900 50  0000 C CNN
-F 2 "Resistor_SMD:R_0805_2012Metric" V 6780 3900 50  0001 C CNN
+F 2 "Resistor_SMD:R_1206_3216Metric" V 6780 3900 50  0001 C CNN
 F 3 "~" H 6850 3900 50  0001 C CNN
 	1    6850 3900
 	0    1    1    0   
@@ -397,7 +397,7 @@ U 1 1 5BD16552
 P 8400 2700
 F 0 "R13" V 8200 2950 50  0000 C CNN
 F 1 "R" V 8300 2900 50  0000 C CNN
-F 2 "Resistor_SMD:R_0805_2012Metric" V 8330 2700 50  0001 C CNN
+F 2 "Resistor_SMD:R_1206_3216Metric" V 8330 2700 50  0001 C CNN
 F 3 "~" H 8400 2700 50  0001 C CNN
 	1    8400 2700
 	0    1    1    0   
@@ -408,7 +408,7 @@ U 1 1 5BD16558
 P 8400 3550
 F 0 "R15" V 8300 3800 50  0000 C CNN
 F 1 "R" V 8200 3800 50  0000 C CNN
-F 2 "Resistor_SMD:R_0805_2012Metric" V 8330 3550 50  0001 C CNN
+F 2 "Resistor_SMD:R_1206_3216Metric" V 8330 3550 50  0001 C CNN
 F 3 "~" H 8400 3550 50  0001 C CNN
 	1    8400 3550
 	0    1    1    0   
@@ -419,7 +419,7 @@ U 1 1 5BD1655E
 P 8400 3900
 F 0 "R16" V 8193 3900 50  0000 C CNN
 F 1 "R" V 8284 3900 50  0000 C CNN
-F 2 "Resistor_SMD:R_0805_2012Metric" V 8330 3900 50  0001 C CNN
+F 2 "Resistor_SMD:R_1206_3216Metric" V 8330 3900 50  0001 C CNN
 F 3 "~" H 8400 3900 50  0001 C CNN
 	1    8400 3900
 	0    1    1    0   
@@ -430,7 +430,7 @@ U 1 1 5BD16564
 P 8400 3050
 F 0 "R14" V 8193 3050 50  0000 C CNN
 F 1 "R" V 8284 3050 50  0000 C CNN
-F 2 "Resistor_SMD:R_0805_2012Metric" V 8330 3050 50  0001 C CNN
+F 2 "Resistor_SMD:R_1206_3216Metric" V 8330 3050 50  0001 C CNN
 F 3 "~" H 8400 3050 50  0001 C CNN
 	1    8400 3050
 	0    1    1    0   
@@ -820,4 +820,108 @@ Connection ~ 4500 3500
 Wire Wire Line
 	4200 3350 4200 3500
 Connection ~ 4200 3500
+$Comp
+L wbraun_ic_lib:mounting-hole-nc J1003
+U 1 1 5C478DFD
+P 3800 4900
+F 0 "J1003" H 4078 4953 60  0000 L CNN
+F 1 "mounting-hole-nc" H 4078 4847 60  0000 L CNN
+F 2 "wbraun_smd:M3-through-hole" H 3800 4900 60  0001 C CNN
+F 3 "" H 3800 4900 60  0001 C CNN
+	1    3800 4900
+	1    0    0    -1  
+$EndComp
+$Comp
+L wbraun_ic_lib:mounting-hole-nc J1001
+U 1 1 5C479324
+P 3050 4900
+F 0 "J1001" H 3328 4953 60  0000 L CNN
+F 1 "mounting-hole-nc" H 3328 4847 60  0000 L CNN
+F 2 "wbraun_smd:M3-through-hole" H 3050 4900 60  0001 C CNN
+F 3 "" H 3050 4900 60  0001 C CNN
+	1    3050 4900
+	1    0    0    -1  
+$EndComp
+$Comp
+L wbraun_ic_lib:mounting-hole-nc J1002
+U 1 1 5C479727
+P 3050 5450
+F 0 "J1002" H 3328 5503 60  0000 L CNN
+F 1 "mounting-hole-nc" H 3328 5397 60  0000 L CNN
+F 2 "wbraun_smd:M3-through-hole" H 3050 5450 60  0001 C CNN
+F 3 "" H 3050 5450 60  0001 C CNN
+	1    3050 5450
+	1    0    0    -1  
+$EndComp
+$Comp
+L wbraun_ic_lib:mounting-hole-nc J1004
+U 1 1 5C479B0B
+P 3800 5450
+F 0 "J1004" H 4078 5503 60  0000 L CNN
+F 1 "mounting-hole-nc" H 4078 5397 60  0000 L CNN
+F 2 "wbraun_smd:M3-through-hole" H 3800 5450 60  0001 C CNN
+F 3 "" H 3800 5450 60  0001 C CNN
+	1    3800 5450
+	1    0    0    -1  
+$EndComp
+$Comp
+L wbraun_ic_lib:mounting-hole-grounded J1005
+U 1 1 5C47B16E
+P 6050 5600
+F 0 "J1005" H 6328 5547 60  0000 L CNN
+F 1 "mounting-hole-grounded" H 6328 5441 60  0000 L CNN
+F 2 "wbraun_smd:M3-tight-fit-pan-head" H 6050 5600 60  0001 C CNN
+F 3 "" H 6050 5600 60  0001 C CNN
+	1    6050 5600
+	1    0    0    -1  
+$EndComp
+$Comp
+L wbraun_ic_lib:mounting-hole-grounded J1006
+U 1 1 5C47B65D
+P 7650 5600
+F 0 "J1006" H 7928 5547 60  0000 L CNN
+F 1 "mounting-hole-grounded" H 7928 5441 60  0000 L CNN
+F 2 "wbraun_smd:M3-tight-fit-pan-head" H 7650 5600 60  0001 C CNN
+F 3 "" H 7650 5600 60  0001 C CNN
+	1    7650 5600
+	1    0    0    -1  
+$EndComp
+$Comp
+L wbraun_ic_lib:mounting-hole-grounded J1007
+U 1 1 5C47BD2D
+P 8700 5600
+F 0 "J1007" H 8978 5547 60  0000 L CNN
+F 1 "mounting-hole-grounded" H 8978 5441 60  0000 L CNN
+F 2 "wbraun_smd:M3-tight-fit-pan-head" H 8700 5600 60  0001 C CNN
+F 3 "" H 8700 5600 60  0001 C CNN
+	1    8700 5600
+	1    0    0    -1  
+$EndComp
+$Comp
+L wbraun_ic_lib:mounting-hole-grounded J1008
+U 1 1 5C47BFA8
+P 9600 5600
+F 0 "J1008" H 9878 5547 60  0000 L CNN
+F 1 "mounting-hole-grounded" H 9878 5441 60  0000 L CNN
+F 2 "wbraun_smd:M3-tight-fit-pan-head" H 9600 5600 60  0001 C CNN
+F 3 "" H 9600 5600 60  0001 C CNN
+	1    9600 5600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6050 6050 6050 6150
+Wire Wire Line
+	7650 6050 7650 6150
+Wire Wire Line
+	8700 6050 8700 6150
+Wire Wire Line
+	9600 6050 9600 6150
+Text Label 6050 6150 0    50   ~ 0
+VSW+
+Text Label 7650 6150 0    50   ~ 0
+VSW-
+Text Label 8700 6150 0    50   ~ 0
+VIN+
+Text Label 9600 6150 0    50   ~ 0
+VIN-
 $EndSCHEMATC

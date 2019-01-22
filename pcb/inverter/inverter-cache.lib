@@ -1,11 +1,11 @@
 EESchema-LIBRARY Version 2.4
 #encoding utf-8
 #
-# Connector:Conn_01x01_Female
+# Connector_Conn_01x01_Female
 #
-DEF Connector:Conn_01x01_Female J 0 40 Y N 1 F N
+DEF Connector_Conn_01x01_Female J 0 40 Y N 1 F N
 F0 "J" 0 100 50 H V C CNN
-F1 "Connector:Conn_01x01_Female" 0 -100 50 H V C CNN
+F1 "Connector_Conn_01x01_Female" 0 -100 50 H V C CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 $FPLIST
@@ -18,11 +18,11 @@ X Pin_1 1 -200 0 150 R 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# Connector:Conn_01x02_Male
+# Connector_Conn_01x02_Male
 #
-DEF Connector:Conn_01x02_Male J 0 40 Y N 1 F N
+DEF Connector_Conn_01x02_Male J 0 40 Y N 1 F N
 F0 "J" 0 100 50 H V C CNN
-F1 "Connector:Conn_01x02_Male" 0 -200 50 H V C CNN
+F1 "Connector_Conn_01x02_Male" 0 -200 50 H V C CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 $FPLIST
@@ -38,11 +38,11 @@ X Pin_2 2 200 -100 150 L 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# Device:C
+# Device_C
 #
-DEF Device:C C 0 10 N Y 1 F N
+DEF Device_C C 0 10 N Y 1 F N
 F0 "C" 25 100 50 H V L CNN
-F1 "Device:C" 25 -100 50 H V L CNN
+F1 "Device_C" 25 -100 50 H V L CNN
 F2 "" 38 -150 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 $FPLIST
@@ -56,11 +56,11 @@ X ~ 2 0 -150 110 U 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# Device:D
+# Device_D
 #
-DEF Device:D D 0 40 N N 1 F N
+DEF Device_D D 0 40 N N 1 F N
 F0 "D" 0 100 50 H V C CNN
-F1 "Device:D" 0 -100 50 H V C CNN
+F1 "Device_D" 0 -100 50 H V C CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 $FPLIST
@@ -78,11 +78,11 @@ X A 2 150 0 100 L 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# Device:R
+# Device_R
 #
-DEF Device:R R 0 0 N Y 1 F N
+DEF Device_R R 0 0 N Y 1 F N
 F0 "R" 80 0 50 V V C CNN
-F1 "Device:R" 0 0 50 V V C CNN
+F1 "Device_R" 0 0 50 V V C CNN
 F2 "" -70 0 50 V I C CNN
 F3 "" 0 0 50 H I C CNN
 $FPLIST
@@ -95,11 +95,11 @@ X ~ 2 0 -150 50 U 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# Transistor_IGBT:IRG4PF50W
+# Transistor_IGBT_IRG4PF50W
 #
-DEF Transistor_IGBT:IRG4PF50W Q 0 0 Y N 1 F N
+DEF Transistor_IGBT_IRG4PF50W Q 0 0 Y N 1 F N
 F0 "Q" 200 75 50 H V L CNN
-F1 "Transistor_IGBT:IRG4PF50W" 200 0 50 H V L CNN
+F1 "Transistor_IGBT_IRG4PF50W" 200 0 50 H V L CNN
 F2 "Package_TO_SOT_THT:TO-247-3_Vertical" 200 -75 50 H I L CIN
 F3 "" 0 0 50 H I L CNN
 $FPLIST
@@ -120,6 +120,33 @@ P 4 0 1 0 85 75 75 95 40 65 85 75 F
 X G 1 -200 0 200 R 50 50 1 1 I
 X C 2 100 200 100 D 50 50 1 1 P
 X E 3 100 -200 100 U 50 50 1 1 P
+ENDDRAW
+ENDDEF
+#
+# wbraun_ic_lib_mounting-hole-grounded
+#
+DEF wbraun_ic_lib_mounting-hole-grounded J 0 40 Y Y 1 F N
+F0 "J" 350 0 60 H V C CNN
+F1 "wbraun_ic_lib_mounting-hole-grounded" 100 350 60 H V C CNN
+F2 "" 0 0 60 H I C CNN
+F3 "" 0 0 60 H I C CNN
+DRAW
+C 0 0 150 0 1 0 N
+C 0 0 250 0 1 0 N
+X ~ 1 0 -450 200 U 0 50 1 1 P
+ENDDRAW
+ENDDEF
+#
+# wbraun_ic_lib_mounting-hole-nc
+#
+DEF wbraun_ic_lib_mounting-hole-nc J 0 40 Y Y 1 F N
+F0 "J" 0 -350 60 H V C CNN
+F1 "wbraun_ic_lib_mounting-hole-nc" 150 350 60 H V C CNN
+F2 "" 0 0 60 H I C CNN
+F3 "" 0 0 60 H I C CNN
+DRAW
+C 0 0 150 0 1 0 N
+C 0 0 250 0 1 0 N
 ENDDRAW
 ENDDEF
 #
