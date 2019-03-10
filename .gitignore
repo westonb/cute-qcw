@@ -12,6 +12,5 @@ simulation/*.net
 *.DS_Store
 #for firmware
 *.tmp
-Firmware/Inverter/inverter/build 
-mx.scratch
+firmware/.Xil/
 
