@@ -6,15 +6,15 @@ import math
 import control
 
 #parameters
-Rp = 1.0
+Rp = 0.08
 Cp = 10E-9
-Lp = 15.8E-6
+Lp = 25.7E-6
 
 K = 0.4
 
 Rs = 100.0
 Ls = 14E-3
-Cs = 7.6E-12
+Cs = 15.8E-12
 
 Lm = K * math.sqrt(Lp*Ls)
 
@@ -30,12 +30,36 @@ System = (BranchParallel + Branch1)**-1
 sys = System.returnScipySignalLTI()[0][0]
 
 
+#step system
+#out_vals = []
+#T, yout, xout = signal.lsim(sys, [0, 1], [0, 1E-7])
+#print((yout[0], yout[1]))
+#out_vals.append(yout[1])
+#for x in range(10000):
+#	T, yout, xout = signal.lsim(sys, [1, 1], [0, 1E-7], xout[1])
+#	out_vals.append(yout[1])
+
+#stepT, stepY = signal.step(sys)
+
 #coeffs in decending order
+#w, mag, phase = sys.bode(np.linspace(math.pi*2*50E3, math.pi*2*800E3, 10000))
+
+#square wave of system
+
+#20 rf cycles
+t = np.linspace(0, 50E-6, 2000)
+square_wave = signal.square(t*2*np.pi*423E3)
+
+T, yout, xout = signal.lsim(sys, square_wave, t);
+
 w, mag, phase = sys.bode(np.linspace(math.pi*2*50E3, math.pi*2*800E3, 10000))
-
-
 plt.figure()
 plt.semilogx(w, mag)    # Bode magnitude plot
 plt.figure()
 plt.semilogx(w, phase)  # Bode phase plot
+#plt.show()
+
+plt.figure()
+plt.plot(t, square_wave, T, yout)
 plt.show()
+

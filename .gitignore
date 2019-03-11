@@ -13,4 +13,10 @@ simulation/*.net
 #for firmware
 *.tmp
 firmware/.Xil/
-
+#simulation
+/firmware/sim/results.xml
+/firmware/sim/*.pyc
+/firmware/sim/waveform.vcd
+/firmware/sim/waves.pkl
+/firmware/sim/sim_build/
+/firmware/sim/build/

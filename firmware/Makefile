@@ -1,3 +1,10 @@
+VERILOG_SOURCES = rtl/qcw_pll.v
+TOPLEVEL=qcw_pll
+MODULE=qcw_pll_test
+COCOTB=~/Projects/cocotb
+PYTHONPATH := ~/Projects/cocotb 
+export COCOTB
+
 
 clean:
 	rm -rf build/*
@@ -12,6 +19,9 @@ clean:
 	rm -f webtalk*
 	rm -f xsim*
 	rm -f top_sim.wdb
+	rm -f *.wcfg
+	rm -f *.wdb
+
 
 all: bitstream.bit
 
@@ -24,6 +34,9 @@ pll_simulate:
 	xvlog --nolog rtl/qcw_pll.v rtl/qcw_pll_tb.v
 	xelab --nolog -debug typical qcw_pll_tb -s pll_sim
 	xsim --nolog -g pll_sim
+
+pll_full_simulate:
+	python3 qcw_pll_test.py
 
 bitstream.bit: src/firmware.hex
 	vivado -mode tcl -nojournal -log build/vivado.log -source build.tcl

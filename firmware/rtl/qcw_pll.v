@@ -1,6 +1,6 @@
 `timescale 1ns/1ps
 module qcw_pll #(
-	parameter STARTING_PERIOD = 3000,
+	parameter STARTING_PERIOD = 363,
 	parameter FORCE_CYCLES = 10,
 	parameter OUTPUT_DELAY = 20
 	)(
@@ -24,7 +24,7 @@ module qcw_pll #(
 	localparam FSM_START3 = 3;
 	localparam FSM_RUN1 = 4;
 
-	localparam K_GAIN = 50;
+	localparam K_GAIN = 10;
 
 	localparam PERIOD_MIN = 100;
 	localparam PERIOD_MAX = 1000;
@@ -52,8 +52,8 @@ module qcw_pll #(
 	wire signal_out;
 	wire signal_out_last;
 
-	reg [15:0] out_B_compare_a;
-	reg [15:0] out_B_compare_b;
+	reg [15:0] out_B_compare_a = 0;
+	reg [15:0] out_B_compare_b = STARTING_PERIOD >> 2;
 
 	reg out_A_reg = 0;
 	reg out_B_reg = 0;
@@ -160,5 +160,13 @@ module qcw_pll #(
 			latch_rise_out <= 0;
 		end
 	end
+
+	`ifdef COCOTB_SIM
+	initial begin
+  		$dumpfile ("waveform.vcd");
+		$dumpvars (0,qcw_pll);
+		#1;
+	end
+	`endif
 endmodule 
 
