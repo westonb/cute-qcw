@@ -1,42 +1,41 @@
 `timescale 1ns/1ps
 
-module clocking(
+module system_clocking(
 	input clk_80MHz_i,
 	output wire clk_80MHz_o,
-	output wire clk_320MHz_o,
-	output wire locked_o
+	output wire clk_160MHz_o
 	);
 
 	wire clk_80MHz_nobuff;
-	wire clk_320MHz_nobuff;
+	wire clk_160MHz_nobuff;
 	wire clk_fb_nobuff;
 	wire clk_fb;
 
-	 MMCME2_ADV
-  #(.BANDWIDTH            ("OPTIMIZED"),
-    .CLKOUT4_CASCADE      ("FALSE"),
-    .COMPENSATION         ("ZHOLD"),
-    .STARTUP_WAIT         ("FALSE"),
-    .DIVCLK_DIVIDE        (1),
-    .CLKFBOUT_MULT_F      (12.000),
-    .CLKFBOUT_PHASE       (0.000),
-    .CLKFBOUT_USE_FINE_PS ("FALSE"),
-    .CLKOUT0_DIVIDE_F     (12.000),
-    .CLKOUT0_PHASE        (0.000),
-    .CLKOUT0_DUTY_CYCLE   (0.500),
-    .CLKOUT0_USE_FINE_PS  ("FALSE"),
-    .CLKOUT1_DIVIDE       (3),
-    .CLKOUT1_PHASE        (0.000),
-    .CLKOUT1_DUTY_CYCLE   (0.500),
-    .CLKOUT1_USE_FINE_PS  ("FALSE"),
-    .CLKIN1_PERIOD        (12.500)
+	 MMCME2_ADV#( 
+        .BANDWIDTH            ("OPTIMIZED"),
+        .CLKOUT4_CASCADE      ("FALSE"),
+        .COMPENSATION         ("ZHOLD"),
+        .STARTUP_WAIT         ("FALSE"),
+        .DIVCLK_DIVIDE        (1),
+        .CLKFBOUT_MULT_F      (12.000),
+        .CLKFBOUT_PHASE       (0.000),
+        .CLKFBOUT_USE_FINE_PS ("FALSE"),
+        .CLKOUT0_DIVIDE_F     (12.000),
+        .CLKOUT0_PHASE        (0.000),
+        .CLKOUT0_DUTY_CYCLE   (0.500),
+        .CLKOUT0_USE_FINE_PS  ("FALSE"),
+        .CLKOUT1_DIVIDE       (6),
+        .CLKOUT1_PHASE        (0.000),
+        .CLKOUT1_DUTY_CYCLE   (0.500),
+        .CLKOUT1_USE_FINE_PS  ("FALSE"),
+        .CLKIN1_PERIOD        (12.500)
     )mmcm_adv_inst(
     // Output clocks
     .CLKFBOUT            (clk_fb_nobuff),
     .CLKFBOUTB           (),
     .CLKOUT0             (clk_80MHz_nobuff),
     .CLKOUT0B            (),
-    .CLKOUT1             (clk_320MHz_nobuff),
+    .CLKOUT1             (clk_160MHz_nobuff),
     .CLKOUT1B            (),
     .CLKOUT2             (),
     .CLKOUT2B            (),
@@ -49,7 +48,7 @@ module clocking(
     .CLKFBIN             (clk_fb),
     .CLKIN1              (clk_80MHz_i),
     .CLKIN2              (1'b0),
-     // Tied to always select the primary input clock
+     // Tied to always select the primary clock
     .CLKINSEL            (1'b1),
     // Ports for dynamic reconfiguration
     .DADDR               (7'h0),
@@ -65,7 +64,7 @@ module clocking(
     .PSINCDEC            (1'b0),
     .PSDONE              (),
     // Other control and status signals
-    .LOCKED              (locked_o),
+    .LOCKED              (),
     .CLKINSTOPPED        (),
     .CLKFBSTOPPED        (),
     .PWRDWN              (1'b0),
@@ -84,8 +83,8 @@ module clocking(
 
 
   BUFG clkout2_buf
-   (.O   (clk_320MHz_o),
-    .I   (clk_320MHz_nobuff)
+   (.O   (clk_160MHz_o),
+    .I   (clk_160MHz_nobuff)
     );
 
 endmodule 

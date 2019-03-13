@@ -12,9 +12,9 @@
 # Case Analysis
 # Disable Timing
 
-create_clock -add -name adc_clk -period 12.5 [get_ports { ADC_BIT_CLK }];
+create_clock -add -name adc_clk -period 12.5 [get_ports { ADC_DCO }];
 
-set_input_jitter [get_clocks ADC_DCO] 0.001
+set_input_jitter [get_clocks adc_clk] 0.001
 set_input_delay –clock adc_clk –max 0.1 [get_ports ADC_DATA]
 set_input_delay –clock adc_clk –min 0.1 [get_ports ADC_DATA]
 

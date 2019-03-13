@@ -36,11 +36,12 @@ addi x30, zero, 0
 addi x31, zero, 0
 
 # zero initialize entire scratchpad memory
-li a0, 0x00000000 # load 0 into a0 
-setmemloop:
-sw a0, 0(a0) # SW rs2,offset(rs1) : (u32[rs1 + offset] <- rs2) #this should be SW zero 0 (a0) ?
-addi a0, a0, 4 # ADDI rd,rs1,imm : rd <- rs1 + sx(imm)
-blt a0, sp, setmemloop # branch back if a0 is less than sp (sp is upper bound of ram)
+
+#li a0, 0x00000000 # load 0 into a0 
+#setmemloop:
+#sw a0, 0(a0) # SW rs2,offset(rs1) : (u32[rs1 + offset] <- rs2) #this should be SW zero 0 (a0) ?
+#addi a0, a0, 4 # ADDI rd,rs1,imm : rd <- rs1 + sx(imm)
+#blt a0, sp, setmemloop # branch back if a0 is less than sp (sp is upper bound of ram)
 
 
 # copy data section

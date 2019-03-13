@@ -5,6 +5,8 @@ COCOTB=~/Projects/cocotb
 PYTHONPATH := ~/Projects/cocotb 
 export COCOTB
 
+VIVADO_BASE = /tools/Xilinx/Vivado/2018.3
+
 
 clean:
 	rm -rf build/*
@@ -27,7 +29,8 @@ all: bitstream.bit
 
 simulate: src/firmware.hex
 	xvlog --nolog rtl/*.v
-	xelab --nolog -debug typical controller_top_tb -s top_sim
+	xvlog --nolog $(VIVADO_BASE)/data/verilog/src/glbl.v
+	xelab --nolog -debug typical controller_top_tb glbl -s top_sim -L UNIFAST_VER -L UNISIMS_VER -L UNIMACRO_VER -L SECUREIP
 	xsim --nolog -g top_sim
 	#vivado -mode tcl -nojournal -log sim/vivado.log -source sim.tcl
 pll_simulate:

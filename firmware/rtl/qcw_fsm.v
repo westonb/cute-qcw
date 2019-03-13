@@ -1,4 +1,4 @@
-
+/*
 
 module qcw_fsm(
 	//clocks
@@ -121,3 +121,4 @@ module nco_phaseshift #(
 
 
 endmodule
+*/

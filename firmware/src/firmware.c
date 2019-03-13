@@ -21,6 +21,13 @@ firmware for PowerSoC V0.1
 #define reg_spi_in (*(volatile uint32_t*) 0x02200008)
 #define reg_spi_status (*(volatile uint32_t*) 0x0220000C)
 
+#define reg_qcw_phase_start (*(volatile uint32_t*) 0x03000000)
+#define reg_qcw_phase_step (*(volatile uint32_t*) 0x03000004)
+#define reg_qcw_cycle_limit (*(volatile uint32_t*) 0x03000008)
+#define reg_qcw_start  (*(volatile uint32_t*) 0x0300000C)
+#define reg_qcw_status (*(volatile uint32_t*) 0x03000010)
+#define reg_qcw_max_current  (*(volatile uint32_t*) 0x03000014)
+
 
 void putchar(char c)
 {
@@ -67,12 +74,19 @@ void main()
 	//SPI is 1 Mhz
 	reg_spi_clkdiv = 50;
 	reg_gpio_out = 11;
-	print("Firmware Loaded\n");
-	print("\n");
+
+	//print("Firmware Loaded\n");
+	//print("\n");
+
+	reg_qcw_phase_start = 100;
+	reg_qcw_phase_step = 50;
+	reg_qcw_cycle_limit = 20;
+	reg_qcw_start = 1;
+
 
 	while (1)
 	{
-		print("Hello World\n");
+		//print("Hello World\n");
 	
 	}
 }

@@ -63,7 +63,8 @@ module wb_spi #(
 				1: begin // started, sclk goes low
 					sclk <= 0;
 					bit_counter <= 0;
-					mosi <= tx_byte[0];
+					mosi <= tx_byte[7];
+					tx_byte <= tx_byte <<1;
 					FSM_state <= 2;
 				end 
 
@@ -73,10 +74,10 @@ module wb_spi #(
 					end
 					else begin
 						sclk <= 1;
-						rx_byte[bit_counter] <= miso;
+						rx_byte <= {rx_byte[6:0], miso};
 						if (bit_counter == 7) begin
-							FSM_state <= 0;
-							transaction_done <= 1;
+							FSM_state <= 4;
+							div_counter <= 0;
 						end
 						else begin
 							FSM_state <= 3;
@@ -91,12 +92,23 @@ module wb_spi #(
 					end
 					else begin
 						sclk <= 0;
-						mosi <= tx_byte[bit_counter];
+						mosi <= tx_byte[7];
+						tx_byte <= tx_byte <<1;
 						div_counter <= 0;
 						FSM_state <= 2;
 					end
 				end
 
+				4: begin //finish last half clock cycle
+					if (div_counter < (spi_div_reg>>1)) begin
+						div_counter <= div_counter+1;
+					end
+					else begin
+						transaction_done <= 1;
+						FSM_state <= 0;
+					end
+				end
+				
 			endcase 
 
 
@@ -143,10 +155,5 @@ module wb_spi #(
 				wb_dat_o <= 32'b0;
 			end
 		end
-	end
-
-	//uart logic 
-	always @(posedge wb_clk_i) begin
-
 	end
 endmodule
