@@ -1,6 +1,6 @@
 `timescale 1ns/1ps
 module qcw_pll #(
-	parameter STARTING_PERIOD = 300,
+	parameter STARTING_PERIOD = 600,
 	parameter FORCE_CYCLES = 10,
 	parameter OUTPUT_DELAY = 20
 	)(

@@ -13,8 +13,9 @@ current_steps = []
 voltage_steps = []
 period_steps = []
 
-clock_period = 6250 #160 MHz clock
-simulation_time = 1E-4
+#clock_period = 6250 #160 MHz clock
+clock_period = 3120
+simulation_time = 0.1E-4
 
 
 

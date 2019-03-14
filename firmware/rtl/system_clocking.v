@@ -11,7 +11,8 @@ module system_clocking(
 	wire clk_fb_nobuff;
 	wire clk_fb;
 
-	 MMCME2_ADV#( 
+	 MMCME2_ADV
+        #( 
         .BANDWIDTH            ("OPTIMIZED"),
         .CLKOUT4_CASCADE      ("FALSE"),
         .COMPENSATION         ("ZHOLD"),
@@ -28,8 +29,8 @@ module system_clocking(
         .CLKOUT1_PHASE        (0.000),
         .CLKOUT1_DUTY_CYCLE   (0.500),
         .CLKOUT1_USE_FINE_PS  ("FALSE"),
-        .CLKIN1_PERIOD        (12.500)
-    )mmcm_adv_inst(
+        .CLKIN1_PERIOD        (12.500))
+        mmcm_adv_inst(
     // Output clocks
     .CLKFBOUT            (clk_fb_nobuff),
     .CLKFBOUTB           (),
