@@ -65,7 +65,7 @@ module qcw_pll #(
 
 	assign out_A = out_A_reg;
 	assign out_B = out_B_reg;
-	assign out_enable = out_enable_reg;
+	assign out_enable = osc_enable;
 
 	assign signal_out = out_delay[OUTPUT_DELAY-1];
 	assign signal_out_last = out_delay[OUTPUT_DELAY];

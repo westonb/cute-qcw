@@ -5,7 +5,7 @@
 /*
 firmware for PowerSoC V0.1
 6 clock cycles per CPU cycle
-50MHz clock frequency
+160MHz clock frequency
 */
 //extern uint32_t sram;
 
@@ -28,6 +28,18 @@ firmware for PowerSoC V0.1
 #define reg_qcw_status (*(volatile uint32_t*) 0x03000010)
 #define reg_qcw_max_current  (*(volatile uint32_t*) 0x03000014)
 
+#define GPIO_RELAY_2  0x01
+#define GPIO_RELAY_1  0x02 
+#define GPIO_LED_2  0x04 
+#define GPIO_LED_1 0x08 
+#define GPIO_ADC_CS 0x10 
+
+#define CYCLE_LIMIT 8000
+#define PHASE_START 80
+#define PHASE_STEP   5 //in units of 1/256**2
+
+volatile uint32_t recv_val; 
+
 
 void putchar(char c)
 {
@@ -46,7 +58,7 @@ void print(const char *p)
 void delay_ms(uint8_t ms){
 	//based on simulation below loop takes 64 cycles.
 	uint32_t i;
-	for(i=0; i < (780); i++){
+	for(i=0; i < (780*3); i++){
 		asm ("nop");
 	}
 }
@@ -67,26 +79,37 @@ void adc_configure(void){
 
 void main()
 {
-	uint8_t spi_test_data[] = {1,2,3,4,5,6,7,8};
 	//configure for 38400 baud 
 	//uart is 8N1
-	reg_uart_clkdiv = 1302;
+	reg_uart_clkdiv = 4168;
 	//SPI is 1 Mhz
 	reg_spi_clkdiv = 50;
-	reg_gpio_out = 11;
+	reg_gpio_out = 0;
 
-	//print("Firmware Loaded\n");
-	//print("\n");
+	print("Firmware Loaded\n");
+	print("\n");
 
-	reg_qcw_phase_start = 100;
-	reg_qcw_phase_step = 50;
-	reg_qcw_cycle_limit = 20;
-	reg_qcw_start = 1;
+	reg_gpio_out = GPIO_LED_1 | GPIO_RELAY_1; 
+
+
+	reg_qcw_phase_start = PHASE_START;
+	reg_qcw_phase_step = PHASE_STEP;
+	reg_qcw_cycle_limit = CYCLE_LIMIT;
 
 
 	while (1)
 	{
-		//print("Hello World\n");
-	
+
+		print("Waiting for Start\n");
+		//flush buffer 
+		recv_val = reg_uart_data;
+		while(reg_uart_data == 0xFFFFFFFF){
+			//idle loop
+		}
+
+		reg_qcw_start = 1;
+
+		delay_ms(100); 
+		print("Burst Finished\n");
 	}
 }

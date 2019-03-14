@@ -52,8 +52,13 @@ module wb_power_interface #(
 
 	reg [3:0] fsm_state = 0;
 
+	reg qcw_done_last = 0;
+	wire burst_finished;
 
 	wire adr_selected;
+
+	assign burst_finished = (qcw_done == 1) && (qcw_done_last == 0) ? 1 : 0;
+
 
 	assign adr_selected = (BASE_ADR <= wb_adr_i) && (wb_adr_i <= (BASE_ADR + ADR_RANGE));
 	assign qcw_start = start_reg;
@@ -62,9 +67,8 @@ module wb_power_interface #(
 
 
 
-
 	always @(posedge wb_clk_i) begin
-
+		qcw_done_last <= qcw_done;
 	//reset condition 
 		if (wb_rst_i) begin	
 			start_reg <= 0;
@@ -92,7 +96,7 @@ module wb_power_interface #(
 						phase_accum <= phase_accum + phase_step;
 						phase_value <= phase_start + (phase_accum>>8);
 					end
-					if(qcw_done || (cycle_counter>=cycle_limit)) begin
+					if(burst_finished || (cycle_counter>=cycle_limit)) begin
 						fsm_state <= FSM_IDLE;
 					end
 				end

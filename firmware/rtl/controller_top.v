@@ -67,7 +67,7 @@ module controller_top(
 	reg [31:0] reset_counter = 0;
 	wire reset = ~reset_counter[31];
 
-	assign qcw_zcs = ZCS;
+	assign qcw_zcs = ~ZCS;
 
 	assign {ADC_CS, LED1, LED2, RELAY1, RELAY2} = gpio_o[4:0];
 	assign gpio_i = 32'b0;
@@ -99,15 +99,15 @@ module controller_top(
 
 
 	qcw_pll #(
-		.STARTING_PERIOD(300),
-		.FORCE_CYCLES   (10),
-		.OUTPUT_DELAY   (20)
+		.STARTING_PERIOD(380),
+		.FORCE_CYCLES   (20),
+		.OUTPUT_DELAY   (2)
 	) qcw_driver (
 		.clk           (clk_160MHz),
 		.signal_in     (qcw_zcs),
-		.halt          (qcw_halt),
+		.halt          (1'b0),
 		.start         (qcw_start),
-		.phase_shift   (qcw_phase_shift),
+		.phase_shift   (qcw_phase_shift), //qcw_phase_shift
 		.cycle_limit   (qcw_cycle_limit),
 		.cycle_finished(qcw_cycle_finished),
 		.fault         (qcw_fault),
@@ -118,7 +118,7 @@ module controller_top(
 	);
 
 	qcw_ocd #(
-		.OCD_LIMIT(500)
+		.OCD_LIMIT(640)
 	) qcw_ocd_inst (
 		.adc_clk    (clk_80MHz),
 		.system_clk (clk_160MHz),
