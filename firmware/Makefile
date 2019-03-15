@@ -38,6 +38,13 @@ pll_simulate:
 	xelab --nolog -debug typical qcw_pll_tb -s pll_sim
 	xsim --nolog -g pll_sim
 
+osc_simulate:
+	xvlog --nolog rtl/qcw_osc.v rtl/qcw_osc_tb.v
+	xvlog --nolog $(VIVADO_BASE)/data/verilog/src/glbl.v
+	xelab --nolog -debug typical qcw_osc_tb glbl -s osc_sim -L UNIFAST_VER -L UNISIMS_VER -L UNIMACRO_VER -L SECUREIP
+	xsim --nolog -g osc_sim
+
+
 pll_full_simulate:
 	python3 qcw_pll_test.py
 

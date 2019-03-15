@@ -28,10 +28,10 @@ module controller_top(
 	input wire ULVO, 
 	input wire ZCS,
 	//gate drive
-	output reg GATE1_P,
-	output reg GATE1_N,
-	output reg GATE2_P,
-	output reg GATE2_N
+	output wire GATE1_P,
+	output wire GATE1_N,
+	output wire GATE2_P,
+	output wire GATE2_N
 	);
 
 	//clock signals
@@ -72,20 +72,8 @@ module controller_top(
 	assign {ADC_CS, LED1, LED2, RELAY1, RELAY2} = gpio_o[4:0];
 	assign gpio_i = 32'b0;
 
-	always@(*) begin
-		if(qcw_out_en) begin
-			GATE1_P = qcw_out_A;
-			GATE1_N = ~qcw_out_A;
-			GATE2_P = qcw_out_B;
-			GATE2_N = ~qcw_out_B;
-		end
-		else begin 
-			GATE1_P = 0;
-			GATE1_N = 0;
-			GATE2_P = 0;
-			GATE2_N = 0;
-		end
-	end
+
+
 
 	always@(posedge clk_160MHz) begin
 		reset_counter <= {reset_counter[30:0], 1'b1};
@@ -97,7 +85,7 @@ module controller_top(
 		.clk_160MHz_o(clk_160MHz)
 	);
 
-
+	/*
 	qcw_pll #(
 		.STARTING_PERIOD(380),
 		.FORCE_CYCLES   (20),
@@ -117,11 +105,36 @@ module controller_top(
 		.done          (qcw_done)
 	);
 
+	*/
+
+	qcw_pll_w_osc #(
+		.STARTING_PERIOD(1650),
+		.FORCE_CYCLES(20),
+		.OUTPUT_DELAY(25)
+	) qcw_driver (
+		.clk           (clk_80MHz),
+		.clk_serdes    (clk_160MHz),
+		.reset 		   (reset),
+		.signal_in     (qcw_zcs),
+		.halt          (1'b0),
+		.start         (qcw_start),
+		.phase_shift   (qcw_phase_shift),
+		.cycle_limit   (qcw_cycle_limit),
+		.cycle_finished(qcw_cycle_finished),
+		.fault         (qcw_fault),
+		.GDT1_A        (GATE1_P),
+		.GDT1_B        (GATE1_N),
+		.GDT2_A        (GATE2_P),
+		.GDT2_B        (GATE2_N),
+		.done          (qcw_done)
+	);
+
+
 	qcw_ocd #(
 		.OCD_LIMIT(640)
 	) qcw_ocd_inst (
 		.adc_clk    (clk_80MHz),
-		.system_clk (clk_160MHz),
+		.system_clk (clk_80MHz),
 		.reset      (reset),
 		.qcw_start	(qcw_start),
 		.qcw_done	(qcw_done),
@@ -134,7 +147,7 @@ module controller_top(
 	wb_power_interface #(
 		.BASE_ADR(32'h03000000)
 	) qcw_interface (
-		.wb_clk_i          (clk_160MHz),
+		.wb_clk_i          (clk_80MHz),
 		.wb_rst_i          (reset),
 		.wb_adr_i          (wb_adr),
 		.wb_sel_i          (wb_sel),
@@ -157,7 +170,7 @@ module controller_top(
 
 
 	base_soc soc (
-		.clk_i(clk_160MHz),
+		.clk_i(clk_80MHz),
 		.reset_i   (reset),
 		.wb_adr_o  (wb_adr),
 		.wb_dat_o  (wb_dat_o),

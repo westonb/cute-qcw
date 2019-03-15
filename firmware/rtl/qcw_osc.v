@@ -1,12 +1,14 @@
+`timescale 1ns/1ps
 module qcw_osc (
 	input wire clk_logic,
 	input wire clk_serdes,
 	input wire [23:0] period,
-	input wire [23:0] b_phase,
-	input wire latch,
+	input wire [23:0] phase_shift,
+	input wire load,
 	input wire enable,
 	input wire reset,
-	output wire out_ref.
+	output wire out_ref,
+	output wire cycle_done,
 	output wire GDT1_A,
 	output wire GDT1_B,
 	output wire GDT2_A,
@@ -18,10 +20,21 @@ module qcw_osc (
 
 	reg [23:0] period_counter = 0;
 	reg [23:0] period_latched = 0;
-	reg [23:0] b_phase_latched = 0;
+	reg [23:0] phase_shift_latched = 0;
 
-	wire [23:0] A_compare;
-	wire [23:0] B_compare;
+	wire [23:0] compare_start_1 = 0;
+	wire [23:0] compare_end_1 = period_latched >> 1;
+	wire [23:0] compare_start_2 = phase_shift;
+	wire [23:0] compare_end_2 = phase_shift + (period_latched>>1);
+
+	reg [23:0] next1 = 0;
+	reg [23:0] next2 = 0;
+	reg [23:0] next3 = 0;
+	reg [23:0] next4 = 0;
+	reg [23:0] next5 = 0;
+	reg [23:0] next6 = 0;
+	reg [23:0] next7 = 0;
+	reg [23:0] next8 = 0;
 
 	reg [2:0] fsm_state = 0;
 
@@ -33,75 +46,106 @@ module qcw_osc (
 	reg [7:0] GDT1_A_ser_in;
 	reg [7:0] GDT1_B_ser_in;
 	reg [7:0] GDT2_A_ser_in;
-	reg [7:0] GDT2TB_ser_in;
+	reg [7:0] GDT2_B_ser_in;
 
-	assign A_compare = period_latched>>1;
-	assign B_compare_start = b_phase;
-	assign B_compare_end = b_phase + (period_latched>>1);
+	reg cycle_done_reg;
+	wire enable_int = enable;
 
+	assign cycle_done = cycle_done_reg;
+
+	assign out_ref = GDT1_A_ser_in[0];
+
+	always@(posedge clk_logic) begin
+		GDT1_A_ser_in[7] <= enable_int ? ((compare_start_1<=next1) && (next1<compare_end_1)) ? 1 : 0 : 0;
+		GDT1_A_ser_in[6] <= enable_int ? ((compare_start_1<=next2) && (next2<compare_end_1)) ? 1 : 0 : 0;
+		GDT1_A_ser_in[5] <= enable_int ? ((compare_start_1<=next3) && (next3<compare_end_1)) ? 1 : 0 : 0;
+		GDT1_A_ser_in[4] <= enable_int ? ((compare_start_1<=next4) && (next4<compare_end_1)) ? 1 : 0 : 0;
+		GDT1_A_ser_in[3] <= enable_int ? ((compare_start_1<=next5) && (next5<compare_end_1)) ? 1 : 0 : 0;
+		GDT1_A_ser_in[2] <= enable_int ? ((compare_start_1<=next6) && (next6<compare_end_1)) ? 1 : 0 : 0;
+		GDT1_A_ser_in[1] <= enable_int ? ((compare_start_1<=next7) && (next7<compare_end_1)) ? 1 : 0 : 0;
+		GDT1_A_ser_in[0] <= enable_int ? ((compare_start_1<=next8) && (next8<compare_end_1)) ? 1 : 0 : 0;
+
+		GDT1_B_ser_in[7] <= enable_int ? ((compare_start_1<=next1) && (next1<compare_end_1)) ? 0 : 1 : 0;
+		GDT1_B_ser_in[6] <= enable_int ? ((compare_start_1<=next2) && (next2<compare_end_1)) ? 0 : 1 : 0;
+		GDT1_B_ser_in[5] <= enable_int ? ((compare_start_1<=next3) && (next3<compare_end_1)) ? 0 : 1 : 0;
+		GDT1_B_ser_in[4] <= enable_int ? ((compare_start_1<=next4) && (next4<compare_end_1)) ? 0 : 1 : 0;
+		GDT1_B_ser_in[3] <= enable_int ? ((compare_start_1<=next5) && (next5<compare_end_1)) ? 0 : 1 : 0;
+		GDT1_B_ser_in[2] <= enable_int ? ((compare_start_1<=next6) && (next6<compare_end_1)) ? 0 : 1 : 0;
+		GDT1_B_ser_in[1] <= enable_int ? ((compare_start_1<=next7) && (next7<compare_end_1)) ? 0 : 1 : 0;
+		GDT1_B_ser_in[0] <= enable_int ? ((compare_start_1<=next8) && (next8<compare_end_1)) ? 0 : 1 : 0;
+
+		GDT2_A_ser_in[7] <= enable_int ? ((compare_start_2<=next1) && (next1<compare_end_2)) ? 1 : 0 : 0;
+		GDT2_A_ser_in[6] <= enable_int ? ((compare_start_2<=next2) && (next2<compare_end_2)) ? 1 : 0 : 0;
+		GDT2_A_ser_in[5] <= enable_int ? ((compare_start_2<=next3) && (next3<compare_end_2)) ? 1 : 0 : 0;
+		GDT2_A_ser_in[4] <= enable_int ? ((compare_start_2<=next4) && (next4<compare_end_2)) ? 1 : 0 : 0;
+		GDT2_A_ser_in[3] <= enable_int ? ((compare_start_2<=next5) && (next5<compare_end_2)) ? 1 : 0 : 0;
+		GDT2_A_ser_in[2] <= enable_int ? ((compare_start_2<=next6) && (next6<compare_end_2)) ? 1 : 0 : 0;
+		GDT2_A_ser_in[1] <= enable_int ? ((compare_start_2<=next7) && (next7<compare_end_2)) ? 1 : 0 : 0;
+		GDT2_A_ser_in[0] <= enable_int ? ((compare_start_2<=next8) && (next8<compare_end_2)) ? 1 : 0 : 0;
+
+
+		GDT2_B_ser_in[7] <= enable_int ? ((compare_start_2<=next1) && (next1<compare_end_2)) ? 0 : 1 : 0;
+		GDT2_B_ser_in[6] <= enable_int ? ((compare_start_2<=next2) && (next2<compare_end_2)) ? 0 : 1 : 0;
+		GDT2_B_ser_in[5] <= enable_int ? ((compare_start_2<=next3) && (next3<compare_end_2)) ? 0 : 1 : 0;
+		GDT2_B_ser_in[4] <= enable_int ? ((compare_start_2<=next4) && (next4<compare_end_2)) ? 0 : 1 : 0;
+		GDT2_B_ser_in[3] <= enable_int ? ((compare_start_2<=next5) && (next5<compare_end_2)) ? 0 : 1 : 0;
+		GDT2_B_ser_in[2] <= enable_int ? ((compare_start_2<=next6) && (next6<compare_end_2)) ? 0 : 1 : 0;
+		GDT2_B_ser_in[1] <= enable_int ? ((compare_start_2<=next7) && (next7<compare_end_2)) ? 0 : 1 : 0;
+		GDT2_B_ser_in[0] <= enable_int ? ((compare_start_2<=next8) && (next8<compare_end_2)) ? 0 : 1 : 0;
+
+	end
 
 	always@(posedge clk_logic) begin
 
 		if(reset) begin
 			fsm_state <= FSM_IDLE;
-			GDT1_A_ser <= 0;
-			GDT1_B_ser <= 0;
-			GDT2_A_ser <= 0;
-			GDT2_B_ser <= 0;
 		end
-
 		else begin
+
+			if(load) begin
+				period_latched <= period;
+				phase_shift_latched <= phase_shift;
+
+			end
 
 			case (fsm_state) 
 
 			FSM_IDLE: begin
 
-				GDT1_A_ser <= 0;
-				GDT1_B_ser <= 0;
-				GDT2_A_ser <= 0;
-				GDT2_B_ser <= 0;
 				period_counter <= 0;
-
+				cycle_done_reg <= 0;
 				if (enable) begin
 					fsm_state <= FSM_RUN;
 					period_latched <= period;
-					b_phase_latched <= b_phase;
+					phase_shift_latched <= phase_shift;
 				end 
 			end 
 
 			FSM_RUN: begin
 
 				//period counter
-				if (period_counter >= (period_latched + 8)) begin
-					period_counter <= period_latched + 8 - period_counter;
+				if ((period_counter + 8) >= (period_latched)) begin
+					period_counter <= period_counter  + 8 - period_latched;
+					if (~enable) begin
+						fsm_state <= FSM_IDLE;
+					end
+					//reload
+					//period_latched <= period;
+					//phase_shift_latched <= phase_shift;
+					cycle_done_reg <= 1;
 				end else begin
 					period_counter <= period_counter + 8;
+					cycle_done_reg <= 0;
 				end
 
-				
-				if(period_counter[23:3] < A_compare[23:3]) begin //output A on, output B off
-					//output A on, output B off
-					GDT1_A_ser <= 16;
-					GDT1_B_ser <= 0;
-				end
-				else if (period_counter[23:3] == A_compare[23:3]) begin //transistion state
-					GDT1_A_ser <= 
-				
-				end
-				else if (period_counter[23:3] == period_latched[23:3]) begin //end state
-
-					GDT1_A_ser <= ((period_latched[2:0] - period_counter[2:0]) == 0) ? 16 : 8 - (period_latched[2:0] - period_counter[2:0]);
-					GDT1_B_ser <= 8 + (period_latched[2:0] - period_counter[2:0]);
-
-				end
-				else begin //output A off, output B on
-					GDT1_A_ser <= 0;
-					GDT1_B_ser <= 16;
-
-				end 
-
-
-				//output B compare 
+				next1 <= (period_counter + 1) >= period_latched ? period_counter + 1 - period_latched : period_counter + 1;
+				next2 <= (period_counter + 2) >= period_latched ? period_counter + 2 - period_latched : period_counter + 2;
+				next3 <= (period_counter + 3) >= period_latched ? period_counter + 3 - period_latched : period_counter + 3;
+				next4 <= (period_counter + 4) >= period_latched ? period_counter + 4 - period_latched : period_counter + 4;
+				next5 <= (period_counter + 5) >= period_latched ? period_counter + 5 - period_latched : period_counter + 5;
+				next6 <= (period_counter + 6) >= period_latched ? period_counter + 6 - period_latched : period_counter + 6;
+				next7 <= (period_counter + 7) >= period_latched ? period_counter + 7 - period_latched : period_counter + 7;
+				next8 <= (period_counter + 8) >= period_latched ? period_counter + 8 - period_latched : period_counter + 8;
 			end
 
 		endcase 
@@ -110,7 +154,184 @@ module qcw_osc (
 
 	end
 
+	//SERDES A channel 
+	OSERDESE2 #(
+		.DATA_RATE_OQ("DDR"), // DDR, SDR
+		.DATA_RATE_TQ("SDR"), // DDR, BUF, SDR
+		.TRISTATE_WIDTH (1),
+		.DATA_WIDTH(8), // Parallel data width (2-8,10,14)
+		.INIT_OQ(1'b0), // Initial value of OQ output (1'b0,1'b1)
+		.INIT_TQ(1'b0), // Initial value of TQ output (1'b0,1'b1)
+		.SERDES_MODE("MASTER"), // MASTER, SLAVE
+		.SRVAL_OQ(1'b0), // OQ output value when SR is used (1'b0,1'b1)
+		.SRVAL_TQ(1'b0) // TQ output value when SR is used (1'b0,1'b1)
+	) OSERDESE2_GDT1_A (
+		.OQ(GDT1_A), // 1-bit output: Data path output
+		// SHIFTOUT1 / SHIFTOUT2: 1-bit (each) output: Data output expansion (1-bit each)
+		.CLK(clk_serdes), // 1-bit input: High speed clock
+		.CLKDIV(clk_logic), // 1-bit input: Divided clock
+		// D1 - D8: 1-bit (each) input: Parallel data inputs (1-bit each)
+		.D1(GDT1_A_ser_in[7]), //fist bit down the wire
+		.D2(GDT1_A_ser_in[6]),
+		.D3(GDT1_A_ser_in[5]),
+		.D4(GDT1_A_ser_in[4]),
+		.D5(GDT1_A_ser_in[3]),
+		.D6(GDT1_A_ser_in[2]),
+		.D7(GDT1_A_ser_in[1]),
+		.D8(GDT1_A_ser_in[0]),
+		.OCE(1'b1), // 1-bit input: Output data clock enable
+		.RST(reset), // 1-bit input: Reset
+		//unused
+		.OFB(), //unused
+		.TFB(), // 1-bit output: 3-state control
+		.TQ(), // 1-bit output: 3-state control
+		.SHIFTOUT1(),
+		.SHIFTOUT2(),
+		.TBYTEOUT(), // 1-bit output: Byte group tristate
+		.SHIFTIN1(1'b0),
+		.SHIFTIN2(1'b0),
+		.T1(1'b0),
+		.T2(1'b0),
+		.T3(1'b0),
+		.T4(1'b0),
+		.TBYTEIN(1'b0), // 1-bit input: Byte group tristate
+		.TCE(1'b0) // 1-bit input: 3-state clock enable
+	);
 
+	//SERDES A channel 
+	OSERDESE2 #(
+		.DATA_RATE_OQ("DDR"), // DDR, SDR
+		.DATA_RATE_TQ("SDR"), // DDR, BUF, SDR
+		.TRISTATE_WIDTH (1),
+		.DATA_WIDTH(8), // Parallel data width (2-8,10,14)
+		.INIT_OQ(1'b0), // Initial value of OQ output (1'b0,1'b1)
+		.INIT_TQ(1'b0), // Initial value of TQ output (1'b0,1'b1)
+		.SERDES_MODE("MASTER"), // MASTER, SLAVE
+		.SRVAL_OQ(1'b0), // OQ output value when SR is used (1'b0,1'b1)
+		.SRVAL_TQ(1'b0) // TQ output value when SR is used (1'b0,1'b1)
+	) OSERDESE2_GDT1_B (
+		.OQ(GDT1_B), // 1-bit output: Data path output
+		// SHIFTOUT1 / SHIFTOUT2: 1-bit (each) output: Data output expansion (1-bit each)
+		.CLK(clk_serdes), // 1-bit input: High speed clock
+		.CLKDIV(clk_logic), // 1-bit input: Divided clock
+		// D1 - D8: 1-bit (each) input: Parallel data inputs (1-bit each)
+		.D1(GDT1_B_ser_in[7]), //fist bit down the wire
+		.D2(GDT1_B_ser_in[6]),
+		.D3(GDT1_B_ser_in[5]),
+		.D4(GDT1_B_ser_in[4]),
+		.D5(GDT1_B_ser_in[3]),
+		.D6(GDT1_B_ser_in[2]),
+		.D7(GDT1_B_ser_in[1]),
+		.D8(GDT1_B_ser_in[0]),
+		.OCE(1'b1), // 1-bit input: Output data clock enable
+		.RST(reset), // 1-bit input: Reset
+		//unused
+		.OFB(), //unused
+		.TFB(), // 1-bit output: 3-state control
+		.TQ(), // 1-bit output: 3-state control
+		.SHIFTOUT1(),
+		.SHIFTOUT2(),
+		.TBYTEOUT(), // 1-bit output: Byte group tristate
+		.SHIFTIN1(1'b0),
+		.SHIFTIN2(1'b0),
+		.T1(1'b0),
+		.T2(1'b0),
+		.T3(1'b0),
+		.T4(1'b0),
+		.TBYTEIN(1'b0), // 1-bit input: Byte group tristate
+		.TCE(1'b0) // 1-bit input: 3-state clock enable
+	);
+
+	//SERDES A channel 
+	OSERDESE2 #(
+		.DATA_RATE_OQ("DDR"), // DDR, SDR
+		.DATA_RATE_TQ("SDR"), // DDR, BUF, SDR
+		.TRISTATE_WIDTH (1),
+		.DATA_WIDTH(8), // Parallel data width (2-8,10,14)
+		.INIT_OQ(1'b0), // Initial value of OQ output (1'b0,1'b1)
+		.INIT_TQ(1'b0), // Initial value of TQ output (1'b0,1'b1)
+		.SERDES_MODE("MASTER"), // MASTER, SLAVE
+		.SRVAL_OQ(1'b0), // OQ output value when SR is used (1'b0,1'b1)
+		.SRVAL_TQ(1'b0) // TQ output value when SR is used (1'b0,1'b1)
+	) OSERDESE2_GDT2_A (
+		.OQ(GDT2_A), // 1-bit output: Data path output
+		// SHIFTOUT1 / SHIFTOUT2: 1-bit (each) output: Data output expansion (1-bit each)
+		.CLK(clk_serdes), // 1-bit input: High speed clock
+		.CLKDIV(clk_logic), // 1-bit input: Divided clock
+		// D1 - D8: 1-bit (each) input: Parallel data inputs (1-bit each)
+		.D1(GDT2_A_ser_in[7]), //fist bit down the wire
+		.D2(GDT2_A_ser_in[6]),
+		.D3(GDT2_A_ser_in[5]),
+		.D4(GDT2_A_ser_in[4]),
+		.D5(GDT2_A_ser_in[3]),
+		.D6(GDT2_A_ser_in[2]),
+		.D7(GDT2_A_ser_in[1]),
+		.D8(GDT2_A_ser_in[0]),
+		.OCE(1'b1), // 1-bit input: Output data clock enable
+		.RST(reset), // 1-bit input: Reset
+		//unused
+		.OFB(), //unused
+		.TFB(), // 1-bit output: 3-state control
+		.TQ(), // 1-bit output: 3-state control
+		.SHIFTOUT1(),
+		.SHIFTOUT2(),
+		.TBYTEOUT(), // 1-bit output: Byte group tristate
+		.SHIFTIN1(1'b0),
+		.SHIFTIN2(1'b0),
+		.T1(1'b0),
+		.T2(1'b0),
+		.T3(1'b0),
+		.T4(1'b0),
+		.TBYTEIN(1'b0), // 1-bit input: Byte group tristate
+		.TCE(1'b0) // 1-bit input: 3-state clock enable
+	);
+
+	//SERDES A channel 
+	OSERDESE2 #(
+		.DATA_RATE_OQ("DDR"), // DDR, SDR
+		.DATA_RATE_TQ("SDR"), // DDR, BUF, SDR
+		.TRISTATE_WIDTH (1),
+		.DATA_WIDTH(8), // Parallel data width (2-8,10,14)
+		.INIT_OQ(1'b0), // Initial value of OQ output (1'b0,1'b1)
+		.INIT_TQ(1'b0), // Initial value of TQ output (1'b0,1'b1)
+		.SERDES_MODE("MASTER"), // MASTER, SLAVE
+		.SRVAL_OQ(1'b0), // OQ output value when SR is used (1'b0,1'b1)
+		.SRVAL_TQ(1'b0) // TQ output value when SR is used (1'b0,1'b1)
+	) OSERDESE2_GDT2_B (
+		.OQ(GDT2_B), // 1-bit output: Data path output
+		// SHIFTOUT1 / SHIFTOUT2: 1-bit (each) output: Data output expansion (1-bit each)
+		.CLK(clk_serdes), // 1-bit input: High speed clock
+		.CLKDIV(clk_logic), // 1-bit input: Divided clock
+		// D1 - D8: 1-bit (each) input: Parallel data inputs (1-bit each)
+		.D1(GDT2_B_ser_in[7]), //fist bit down the wire
+		.D2(GDT2_B_ser_in[6]),
+		.D3(GDT2_B_ser_in[5]),
+		.D4(GDT2_B_ser_in[4]),
+		.D5(GDT2_B_ser_in[3]),
+		.D6(GDT2_B_ser_in[2]),
+		.D7(GDT2_B_ser_in[1]),
+		.D8(GDT2_B_ser_in[0]),
+		.OCE(1'b1), // 1-bit input: Output data clock enable
+		.RST(reset), // 1-bit input: Reset
+		//unused
+		.OFB(), //unused
+		.TFB(), // 1-bit output: 3-state control
+		.TQ(), // 1-bit output: 3-state control
+		.SHIFTOUT1(),
+		.SHIFTOUT2(),
+		.TBYTEOUT(), // 1-bit output: Byte group tristate
+		.SHIFTIN1(1'b0),
+		.SHIFTIN2(1'b0),
+		.T1(1'b0),
+		.T2(1'b0),
+		.T3(1'b0),
+		.T4(1'b0),
+		.TBYTEIN(1'b0), // 1-bit input: Byte group tristate
+		.TCE(1'b0) // 1-bit input: 3-state clock enable
+	);
+
+
+	/*
 	//output serializer decoding
 	always@(*) begin 
 		case (GDT1_A_ser) 
@@ -198,7 +419,7 @@ module qcw_osc (
 		endcase 
 	end
 
-
+	*/
 
 
 endmodule

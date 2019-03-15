@@ -34,9 +34,9 @@ firmware for PowerSoC V0.1
 #define GPIO_LED_1 0x08 
 #define GPIO_ADC_CS 0x10 
 
-#define CYCLE_LIMIT 8000
-#define PHASE_START 80
-#define PHASE_STEP   5 //in units of 1/256**2
+#define CYCLE_LIMIT 200
+#define PHASE_START 90
+#define PHASE_STEP   200 //in units of 1/256**2
 
 volatile uint32_t recv_val; 
 
@@ -58,7 +58,7 @@ void print(const char *p)
 void delay_ms(uint8_t ms){
 	//based on simulation below loop takes 64 cycles.
 	uint32_t i;
-	for(i=0; i < (780*3); i++){
+	for(i=0; i < (780*2); i++){
 		asm ("nop");
 	}
 }
@@ -81,7 +81,8 @@ void main()
 {
 	//configure for 38400 baud 
 	//uart is 8N1
-	reg_uart_clkdiv = 4168;
+	//reg_uart_clkdiv = 4168;
+	reg_uart_clkdiv = 2084;
 	//SPI is 1 Mhz
 	reg_spi_clkdiv = 50;
 	reg_gpio_out = 0;
@@ -102,8 +103,8 @@ void main()
 
 		print("Waiting for Start\n");
 		//flush buffer 
-		recv_val = reg_uart_data;
-		while(reg_uart_data == 0xFFFFFFFF){
+		//recv_val = reg_uart_data;
+		while(reg_uart_data !=102){ //f is for fire!
 			//idle loop
 		}
 
