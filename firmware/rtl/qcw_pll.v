@@ -24,7 +24,7 @@ module qcw_pll #(
 	localparam FSM_START3 = 3;
 	localparam FSM_RUN1 = 4;
 
-	localparam K_GAIN = 1;
+	localparam K_GAIN = 8;
 
 	localparam PERIOD_MIN = 100;
 	localparam PERIOD_MAX = 1000;
@@ -62,6 +62,10 @@ module qcw_pll #(
 	reg out_B_reg = 0;
 	reg out_enable_reg = 0;
 
+	reg [3:0] input_delayed; 
+	reg input_filtered = 0;
+	reg input_filtered_last = 0;
+
 
 	assign out_A = out_A_reg;
 	assign out_B = out_B_reg;
@@ -74,6 +78,11 @@ module qcw_pll #(
 	always@(posedge clk) begin
 		out_delay <= {out_delay[OUTPUT_DELAY-1:0], out_A_reg};
 		signal_in_last <= signal_in;
+
+		input_delayed <= {input_delayed[2:0], signal_in};
+
+		input_filtered <= (input_delayed == 4'b1111) ? 1 : (input_delayed == 4'b0000) ? 0 : input_filtered;
+		input_filtered_last <= input_filtered;
 
 		case (fsm_state)
 			FSM_IDLE: begin //wait for other logic to start
@@ -162,7 +171,8 @@ module qcw_pll #(
 				latch_rise_out <= 0;
 			end
 			else begin
-				latch_rise_in <= (!signal_in_last && signal_in) ? 1 : latch_rise_in;
+				//latch_rise_in <= (!signal_in_last && signal_in) ? 1 : latch_rise_in;
+				latch_rise_in <= (!input_filtered_last && input_filtered) ? 1 : latch_rise_in;
 				latch_rise_out <= (!signal_out_last && signal_out) ? 1 : latch_rise_out;
 			end
 

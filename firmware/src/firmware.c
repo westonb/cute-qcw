@@ -34,9 +34,9 @@ firmware for PowerSoC V0.1
 #define GPIO_LED_1 0x08 
 #define GPIO_ADC_CS 0x10 
 
-#define CYCLE_LIMIT 8000
-#define PHASE_START 80
-#define PHASE_STEP   5 //in units of 1/256**2
+#define CYCLE_LIMIT 6000
+#define PHASE_START 100
+#define PHASE_STEP   7 //in units of 1/256**2
 
 volatile uint32_t recv_val; 
 
@@ -81,13 +81,25 @@ void main()
 {
 	//configure for 38400 baud 
 	//uart is 8N1
-	reg_uart_clkdiv = 4168;
+	reg_uart_clkdiv = 4168*3/2;
 	//SPI is 1 Mhz
 	reg_spi_clkdiv = 50;
 	reg_gpio_out = 0;
 
 	print("Firmware Loaded\n");
 	print("\n");
+
+	print("Waiting for Enable\n");
+	print(".....\n");
+
+	while(reg_uart_data != 101){ //e is for fire 
+			//idle loop
+	}
+
+	print("Enabling Precharge\n");
+
+	
+
 
 	reg_gpio_out = GPIO_LED_1 | GPIO_RELAY_1; 
 
@@ -103,7 +115,7 @@ void main()
 		print("Waiting for Start\n");
 		//flush buffer 
 		recv_val = reg_uart_data;
-		while(reg_uart_data == 0xFFFFFFFF){
+		while(reg_uart_data != 102){ //f is for fire 
 			//idle loop
 		}
 

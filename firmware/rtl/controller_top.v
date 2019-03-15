@@ -99,9 +99,9 @@ module controller_top(
 
 
 	qcw_pll #(
-		.STARTING_PERIOD(380),
+		.STARTING_PERIOD(634),
 		.FORCE_CYCLES   (20),
-		.OUTPUT_DELAY   (2)
+		.OUTPUT_DELAY   (15)
 	) qcw_driver (
 		.clk           (clk_160MHz),
 		.signal_in     (qcw_zcs),

@@ -1,3 +1,5 @@
+/*
+
 module qcw_osc (
 	input wire clk_logic,
 	input wire clk_serdes,
@@ -202,3 +204,4 @@ module qcw_osc (
 
 
 endmodule
+*/
